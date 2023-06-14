@@ -1,0 +1,26 @@
+specVersion: 0.35.0
+name: quarkus-k-function
+runtime: quarkus
+registry: image-registry.openshift-image-registry.svc:5000/q-func
+image: image-registry.openshift-image-registry.svc:5000/q-func/quarkus-k-function:latest
+imageDigest: sha256:52f67215aab7bfd4b16d63403d143118f713f215bf4f9da630d5b02e80dae063
+created: 2023-06-08T16:14:12.399116549+02:00
+build:
+  builder: s2i
+  buildEnvs:
+  - name: BP_JVM_VERSION
+    value: "17"
+  - name: BP_NATIVE_IMAGE
+    value: "false"
+  - name: BP_MAVEN_BUILT_ARTIFACT
+    value: func.yaml target/quarkus-app/lib/ target/quarkus-app/*.jar target/quarkus-app/app/
+      target/quarkus-app/quarkus/
+  - name: BP_MAVEN_BUILD_ARGUMENTS
+    value: package -DskipTests=true -Dmaven.javadoc.skip=true -Dquarkus.package.type=fast-jar
+  - name: MAVEN_S2I_ARTIFACT_DIRS
+    value: target/quarkus-app
+  - name: S2I_SOURCE_DEPLOYMENTS_FILTER
+    value: lib quarkus-run.jar app quarkus
+  pvcSize: 256Mi
+deploy:
+  namespace: q-func
