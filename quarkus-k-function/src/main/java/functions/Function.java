@@ -21,7 +21,7 @@ public class Function {
 
         // Add business logic here
 
-        return new Output(input.getMessage()+" "+ getAddress());
+        return new Output(input.getMessage()+" from "+ getAddress());
     }
 
     private String getAddress(){
