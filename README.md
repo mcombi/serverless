@@ -9,6 +9,9 @@ Then create a Create KnativeServing in knative-serving namespace, through the op
 
 Once the serverless operator is up and running, go to the menu on the top right corner and press the Question Mark icon, and then go to the Command Line Tools section and download the <em>kn - OpenShift Serverless Command Line Interface (CLI)</em> for ypur machine.
 
+Login with you cli to the OCP cluster, usually with the <em>copy login command</em> on the top right corner under the username 
+
+
 ## Develop a new Function
 To create a new function locally run: 
 ```shell script
